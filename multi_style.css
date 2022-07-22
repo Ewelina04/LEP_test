@@ -11,7 +11,8 @@ div[class="row-widgetstSelectbox"] {
 
 a[label] {
   color: black;
-  font-weight: 900;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 div[class="st-b7"] {
