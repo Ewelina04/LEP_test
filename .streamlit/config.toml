@@ -1,3 +1,4 @@
 [theme]
-
-secondaryBackgroundColor="#BE0000"
+primaryColor = "#BE0000"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#E2E1E1"
