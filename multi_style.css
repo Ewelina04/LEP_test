@@ -1,5 +1,5 @@
 
-/* Internal links, beginning with "#" */
+
 a[href^="#"] {
   color: black;
   font-weight: bold;
@@ -28,17 +28,6 @@ div[class="streamlit-expanderHeader st-ae st-et st-ag st-ah st-ai st-aj st-bp st
   font-weight: 600;
   color: black;
 }
-
-
-/*div[class="streamlit-expanderHeader st-ae st-et st-ag st-ah st-ai st-aj st-bp st-d4 st-cc st-eu st-ev st-ew st-ex st-as st-at st-cq st-ci st-ey st-cg st-ez st-b4 st-by st-ch st-f0 st-b5 st-f1 st-ce st-cf st-cd"]:hover {
-  font-weight: bold;
-  color: #BE0000;
-}
-
-div[class="streamlit-expanderHeader st-ae st-et st-ag st-ah st-ai st-aj st-bp st-d4 st-cc st-eu st-ev st-ew st-ex st-as st-at st-cq st-ci st-ey st-cg st-ez st-b4 st-by st-ch st-f0 st-b5 st-f1 st-ce st-cf st-cd"]:active {
-  font-weight: bold;
-  color: #BE0000;
-}*/
 
 
 /*.row-widget.stRadio:first-of-type {
@@ -83,6 +72,11 @@ div[class="st-do st-dt st-bp st-ae st-af st-ag st-ah st-ai st-aj st-bc st-du"] {
   font-size: 17px;
 }
 
+div[class="st-d1 st-da st-br st-ae st-af st-ag st-ah st-ai st-aj st-db st-dc"] {
+  font-weight: bold;
+  font-size: 17px;
+}
+
 div[class="st-by st-df st-dg st-dh st-di st-dj st-az st-b4 st-dk st-dl st-dm st-ci st-dn st-c5 st-ch st-do st-dp st-cy st-b2 st-bo"] {
   color: #BE0000;
   background-color: #BE0000;
@@ -113,13 +107,3 @@ div[class="css-demzbm e88czh83"] {
   background-color: #BE0000;
 }
 
-/*<div class="st-av st-aw st-ax st-ay st-mr st-ms st-b7 st-mt st-mu"><div role="slider" aria-valuemax="100" aria-valuemin="0" aria-valuenow="90" tabindex="0" draggable="false" aria-valuetext="90" class="css-demzbm e88czh83" style="position: absolute; z-index: 0; cursor: grab; user-select: none; touch-action: none; transform: translate(541.2px, -4px);">
-
-<div class="StyledThumbValue css-10y5sf6 e88czh82"
-
-
-
-/*
-<div role="slider" aria-valuemax="100" aria-valuemin="0" aria-valuenow="90" tabindex="0" draggable="false" aria-valuetext="90" class="css-demzbm e88czh83" style="position: absolute; z-index: 0; cursor: grab; user-select: none; touch-action: none; transform: translate(541.2px, -4px);"><div class="StyledThumbValue css-10y5sf6 e88czh82" data-testid="stThumbValue">90</div></div></div></div>
-
-*/
