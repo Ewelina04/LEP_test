@@ -588,7 +588,7 @@ st.set_page_config(
 
 # sidebar
 with st.sidebar:
-    st.write('<style>div[class="css-1siy2j7 e1fqkh3o3"] > div{background-color: #E6DFDF;}</style>', unsafe_allow_html=True)
+    st.write('<style>div[class="css-1siy2j7 e1fqkh3o3"] > div{background-color: #e60000;}</style>', unsafe_allow_html=True)
     st.write('<style>div.row-widget.stRadio > div{flex-direction:column;}</style>', unsafe_allow_html=True)
     st.title("Contents")
     contents_radio = st.radio("",
