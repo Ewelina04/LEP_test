@@ -595,13 +595,12 @@ with st.sidebar:
     ("Main Page", "Text-Level Analysis", "High Precision Words - WordCloud", '(Anti)Heroes',
     " Rhetoric Strategies", ' Rhetoric Metric', 'User-Level Analysis')) # Negative and Positive Users Analysis
 
-    add_spacelines(2)
+    add_spacelines(1)
     dataset_name = st.selectbox(
          "Choose a dataset you would like to analyse",
          ("US2016 Presidential Debate Reddit", "Conspiracy Theories Reddit"))
 
     st.info(f'Selected dataset: **{dataset_name}**')
-    add_spacelines(1)
 
     df = load_dataset(dataset_name)
 
@@ -670,8 +669,8 @@ def MainPage():
 
         add_spacelines(2)
         st.write(" **************************** ")
-        st.write(" Project developed by:")
-        add_spacelines(1)
+        st.write(" Developed by:")
+        #add_spacelines(1)
         col11, col22, col33 = st.columns([4, 4, 3])
         with col11:
             st.write("**Katarzyna Budzynska**")
@@ -698,7 +697,6 @@ def MainPage():
         with col1:
             st.write("**Laboratory of The New Ethos**")
             st.write(""" Faculty of Administration and Social Sciences, Warsaw University of Technology""")
-        #st.subheader("Warsaw University of Technology")
             add_spacelines(2)
             st.image(image, caption='TNE logo')
             add_spacelines(1)
@@ -710,7 +708,6 @@ def MainPage():
         with col3:
             add_spacelines(2)
             st.write(""" Faculty of Psychology and Cognitive Sciences, Adam Mickiewicz University in Poznan""")
-            #st.subheader("Adam Mickiewicz University in Poznan")
             st.image(imageuam, caption='AMU logo')
             st.write("**See: [Faculty of Psychology and Cognitive Sciences](https://psychologia.amu.edu.pl/)**")
     st.write('<style>div.row-widget.stRadio > div{flex-direction:column;font-size=18px;}</style>', unsafe_allow_html=True)
@@ -823,7 +820,7 @@ def generateWordCloud():
     label_cloud = label_cloud.replace("attack / negative", "attack").replace("support / positive", "support")
     add_spacelines(1)
     threshold_cloud = st.slider('Select a precision value (threshold) for a WordCloud', 0, 100, 90)
-    st.info(f'Selected precision: **{threshold_cloud}**')
+    st.info(f'Selected precision: **{threshold_cloud}%**')
 
     add_spacelines(1)
 
