@@ -1348,7 +1348,7 @@ def CompareDatasets():
     #hansard_box = st.checkbox("Hansard")
     add_spacelines(2)
 
-    if us2016_box and conspiracy_box:
+    if us2016_box and conspiracy_box:        
         us2016_df = pd.read_excel(r"app_US2016.xlsx", index_col = 0)
         conspiracy_df = pd.read_excel(r"app_conspiracy.xlsx", index_col = 0)
 
@@ -1400,10 +1400,12 @@ def CompareDatasets():
         fig_stats.subplots_adjust(hspace=.3)
         plt.show()
         st.pyplot(fig_stats)
-
-    plotRhetoricCompare2(data1 = us2016_df, data2 = conspiracy_df, rhet_dim_to_plot = compare_rhet_dim)
-    
-    
+        
+    if us2016_box and conspiracy_box:
+        plotRhetoricCompare2(data1 = us2016_df, data2 = conspiracy_df, rhet_dim_to_plot = compare_rhet_dim)
+    else:
+        add_spacelines(1)
+      
     
 style_css("multi_style.css")
 
