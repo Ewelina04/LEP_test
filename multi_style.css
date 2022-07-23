@@ -25,28 +25,42 @@ div[class="st-ae st-af st-ag st-ah st-ai st-aj st-ak st-al st-am st-ba st-ao st-
 }
 
 
+div[role="listbox"] ul {
+    background-color: white;
+    font-weight: 500;
+}
+
+div[data-testid="stMarkdownContainer"] {
+  font-weight: bold;
+}
+
+div[data-testid="stMetricDelta"] {
+  font-size: 19px;
+}
+
+div[data-baseweb="select"] > div {
+    background-color: white;
+    font-weight: 600;
+}
+
+
 div[class="streamlit-expanderHeader st-ae st-et st-ag st-ah st-ai st-aj st-bp st-d4 st-cc st-eu st-ev st-ew st-ex st-as st-at st-cq st-ci st-ey st-cg st-ez st-b4 st-by st-ch st-f0 st-b5 st-f1 st-ce st-cf st-cd"] {
   font-weight: 600;
   color: black;
 }
 
-
-/*.row-widget.stRadio:first-of-type {
-  flex-direction:column;
+div.row-widget.stRadio > div[role="radiogroup"] > label[data-baseweb="radio"] > div:first-child {
+    background-color: black;
+    border-radius: 0.6rem;
+    padding: 0.18rem;
+    margin-bottom: 1rem;
 }
 
-.row-widget.stRadio:last-of-type {
-  flex-direction:row;
-}
-*/
-
-div[role="radiogroup"] {
-  font-weight: bold;
+div.row-widget.stRadio > div[role="radiogroup"] > label[data-baseweb="radio"] > div:last-child {
+    font-weight: bold;
+    color: black;
 }
 
-label[data-baseweb="radio"] {
-  font-weight: bold;
-}
 
 .stSlider {
   font-weight: 900;
@@ -68,20 +82,6 @@ label[data-baseweb="radio"] {
   font-size: 22px;
 }
 
-div[class="st-do st-dt st-bp st-ae st-af st-ag st-ah st-ai st-aj st-bc st-du"] {
-  font-weight: bold;
-  font-size: 17px;
-}
-
-div[class="st-d1 st-da st-br st-ae st-af st-ag st-ah st-ai st-aj st-db st-dc"] {
-  font-weight: bold;
-  font-size: 17px;
-}
-
-div[class="st-by st-df st-dg st-dh st-di st-dj st-az st-b4 st-dk st-dl st-dm st-ci st-dn st-c5 st-ch st-do st-dp st-cy st-b2 st-bo"] {
-  color: #BE0000;
-  background-color: #BE0000;
-}
 
 .span {
   font-weight: bold;
