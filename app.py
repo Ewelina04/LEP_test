@@ -838,7 +838,7 @@ def generateWordCloud():
         st.pyplot(fig_cloud)
 
     else:
-        st.write("**You need to click the button in order to generate a WordCloud**")
+        st.warning("**You need to click the button in order to generate a WordCloud**")
 
     add_spacelines(4)
     with st.expander("High Precision Words"):
@@ -1403,8 +1403,10 @@ def CompareDatasets():
         
     if us2016_box and conspiracy_box:
         plotRhetoricCompare2(data1 = us2016_df, data2 = conspiracy_df, rhet_dim_to_plot = compare_rhet_dim)
+    elif np.sum([int(us2016_box), int(conspiracy_box)]) < 2:
+        st.warning("**You need to select at least 2 datasets.**")
     else:
-        add_spacelines(1)
+        st.warning("**You need to select at least 2 datasets.**")
       
     
 style_css("multi_style.css")
