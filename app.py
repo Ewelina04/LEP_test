@@ -593,7 +593,7 @@ with st.sidebar:
     st.title("Contents")
     contents_radio = st.radio("",
     ("Main Page", "Text-Level Analysis", "High Precision Words - WordCloud", '(Anti)Heroes',
-    " Rhetoric Strategies", ' Rhetoric Metric', 'User-Level Analysis')) # Negative and Positive Users Analysis
+    " Rhetoric Strategies", ' Rhetoric Metric', 'User-Level Analysis', 'Compare Datasets')) # Negative and Positive Users Analysis
 
     add_spacelines(1)
     dataset_name = st.selectbox(
@@ -604,7 +604,7 @@ with st.sidebar:
 
     df = load_dataset(dataset_name)
 
-    add_spacelines(3)
+    add_spacelines(2)
 
 def style_css(file):
     with open(file) as f:
@@ -1338,6 +1338,73 @@ def UsersExtreme():
     st.write('<style>div.row-widget.stRadio > div{flex-direction:column;font-size=18px;}</style>', unsafe_allow_html=True)
 
     
+def CompareDatasets():
+    st.subheader("Compare Multiple Datasets on Rhetoric")
+    add_spacelines(2)
+
+    st.write("##### Choose datasets ")
+    us2016_box = st.checkbox("US2016 Presidential Debate Reddit")
+    conspiracy_box = st.checkbox("Conspiracy Theories Reddit")
+    #hansard_box = st.checkbox("Hansard")
+    add_spacelines(2)
+
+    if us2016_box and conspiracy_box:
+        us2016_df = pd.read_excel(r"app_US2016.xlsx", index_col = 0)
+        conspiracy_df = pd.read_excel(r"app_conspiracy.xlsx", index_col = 0)
+
+    compare_rhet_dim = st.selectbox(
+         "Choose a rhetoric dimension",
+         rhetoric_dims[::-1], index=0)
+
+    add_spacelines(2)
+
+    def plotRhetoricCompare2(data1, data2, rhet_dim_to_plot):
+        rhet_dim = str(rhet_dim_to_plot)
+        rhet_dim_var = rhet_dim.replace("ethos", "ethos_name").replace("logos", "logos_name").replace("pathos", "pathos_name")
+
+        df_prop1 = pd.DataFrame(data1[rhet_dim_var].value_counts(normalize=True).round(3)*100)
+        df_prop1.columns = ['percentage']
+        df_prop1.reset_index(inplace=True)
+        df_prop1.columns = ['label', 'percentage']
+        df_prop1 = df_prop1.sort_values(by = 'label')
+
+        df_prop2 = pd.DataFrame(data2[rhet_dim_var].value_counts(normalize=True).round(3)*100)
+        df_prop2.columns = ['percentage']
+        df_prop2.reset_index(inplace=True)
+        df_prop2.columns = ['label', 'percentage']
+        df_prop2 = df_prop2.sort_values(by = 'label')
+
+        fig_stats, axs = plt.subplots(1, 2, figsize=(18, 7), sharey=True, constrained_layout=True)
+        axs[0].bar(df_prop1['label'], df_prop1['percentage'], color = ['#BB0000', '#022D96', '#026F00'])
+        title_str0 = str(rhet_dim).capitalize() + " in US2016 Presidential Debate Reddit \n"
+        axs[0].set_title(title_str0, fontsize=20)
+        axs[0].set_ylabel('percentage %\n', fontsize=16)
+        axs[0].set_ylim(0, 101)
+        axs[0].tick_params(axis='x', labelsize=17)
+        axs[0].tick_params(axis='y', labelsize=15)
+        vals0 = df_prop1['percentage'].values.round(1)
+        for i, v in enumerate(vals0):
+            axs[0].text(x=i , y = v+1 , s=f"{v}%" , fontdict=dict(fontsize=14, ha='center', weight='bold'))
+
+        axs[1].bar(df_prop2['label'], df_prop2['percentage'], color = ['#BB0000', '#022D96', '#026F00'])
+        title_str1 = str(rhet_dim).capitalize() + " in Conspiracy Theories Reddit \n"
+        axs[1].set_title(title_str1, fontsize=20)
+        #axs[1].set_ylabel('percentage %\n', fontsize=16)
+        axs[1].yaxis.set_tick_params(labelbottom=True)
+        axs[1].tick_params(axis='x', labelsize=17)
+        axs[1].tick_params(axis='y', labelsize=15)
+        vals1 = df_prop2['percentage'].values.round(1)
+        for i, v in enumerate(vals1):
+            axs[1].text(x=i , y = v+1 , s=f"{v}%" , fontdict=dict(fontsize=14, ha='center', weight='bold'))
+
+        fig_stats.subplots_adjust(hspace=.3)
+        plt.show()
+        st.pyplot(fig_stats)
+
+    plotRhetoricCompare2(data1 = us2016_df, data2 = conspiracy_df, rhet_dim_to_plot = compare_rhet_dim)
+    
+    
+    
 style_css("multi_style.css")
 
 if contents_radio == "Main Page":
@@ -1360,6 +1427,9 @@ elif contents_radio == ' Rhetoric Metric':
 
 elif contents_radio == 'User-Level Analysis':
     UsersExtreme()
+
+elif contents_radio == 'Compare Datasets':
+    CompareDatasets()    
 
 else:
     MainPage()
