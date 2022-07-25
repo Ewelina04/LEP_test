@@ -19,11 +19,15 @@ div[class="st-b7"] {
   font-weight: bold;
 }
 
-div[class="st-ae st-af st-ag st-ah st-ai st-aj st-ak st-al st-am st-ba st-ao st-ap st-aq st-ar st-as st-at st-au st-av st-aw st-ax st-ay st-az st-b9 st-b1 st-b2 st-b3 st-b4 st-b5 st-b6"] {
+/*div[class="st-ae st-af st-ag st-ah st-ai st-aj st-ak st-al st-am st-ba st-ao st-ap st-aq st-ar st-as st-at st-au st-av st-aw st-ax st-ay st-az st-b9 st-b1 st-b2 st-b3 st-b4 st-b5 st-b6"] {
+  opacity: 1.1;
+  background-color: white;
+}*/
+
+div[class="st-ae st-af st-ag st-ah st-ai st-aj st-ak st-al st-am st-ch st-ao st-ap st-aq st-ar st-as st-at st-au st-av st-aw st-ax st-ay st-az st-b9 st-b1 st-b2 st-b3 st-b4 st-b5 st-b6"] {
   opacity: 1.1;
   background-color: white;
 }
-
 
 div[role="listbox"] ul {
     background-color: white;
