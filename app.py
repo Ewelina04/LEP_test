@@ -585,27 +585,6 @@ st.set_page_config(
     page_title="LEP Analytics", layout="centered"
 )
 
-
-# sidebar
-with st.sidebar:
-    st.write('<style>div[class="css-1siy2j7 e1fqkh3o3"] > div{background-color: #e60000;}</style>', unsafe_allow_html=True)
-    st.write('<style>div.row-widget.stRadio > div{flex-direction:column;}</style>', unsafe_allow_html=True)
-    st.title("Contents")
-    contents_radio = st.radio("",
-    ("Main Page", "Text-Level Analysis", "High Precision Words - WordCloud", '(Anti)Heroes',
-    " Rhetoric Strategies", ' Rhetoric Metric', 'User-Level Analysis', 'Compare Datasets')) # Negative and Positive Users Analysis
-
-    add_spacelines(1)
-    dataset_name = st.selectbox(
-         "Choose a dataset you would like to analyse",
-         ("US2016 Presidential Debate Reddit", "Conspiracy Theories Reddit"))
-
-    st.info(f'Selected dataset: **{dataset_name}**')
-
-    df = load_dataset(dataset_name)
-
-    add_spacelines(2)
-
 def style_css(file):
     with open(file) as f:
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
@@ -1411,6 +1390,34 @@ def CompareDatasets():
     
 style_css("multi_style.css")
 
+# sidebar
+with st.sidebar:
+    st.write('<style>div[class="css-1siy2j7 e1fqkh3o3"] > div{background-color: #E6DFDF;}</style>', unsafe_allow_html=True)
+    st.write('<style>div.row-widget.stRadio > div{flex-direction:column;}</style>', unsafe_allow_html=True)
+    st.title("Contents")
+    contents_radio = st.radio("",
+    ("Main Page", "Text-Level Analysis", "High Precision Words - WordCloud", '(Anti)Heroes',
+    " Rhetoric Strategies", ' Rhetoric Metric', 'User-Level Analysis', 'Compare Datasets')) # Negative and Positive Users Analysis
+    #add_spacelines(1)
+
+
+if contents_radio == 'Compare Datasets':
+    with st.sidebar:
+        add_spacelines(4)
+
+else:
+    # sidebar
+    with st.sidebar:
+        dataset_name = st.selectbox(
+             "Choose a dataset you would like to analyse",
+             ("US2016 Presidential Debate Reddit", "Conspiracy Theories Reddit"))
+
+        st.info(f'Selected dataset: **{dataset_name}**')
+        add_spacelines(1)
+        df = load_dataset(dataset_name)
+        add_spacelines(2)
+
+
 if contents_radio == "Main Page":
     MainPage()
 
@@ -1433,9 +1440,7 @@ elif contents_radio == 'User-Level Analysis':
     UsersExtreme()
 
 elif contents_radio == 'Compare Datasets':
-    CompareDatasets()    
+    CompareDatasets()
 
 else:
     MainPage()
-
-
