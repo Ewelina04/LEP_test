@@ -1392,7 +1392,7 @@ style_css("multi_style.css")
 
 # sidebar
 with st.sidebar:
-    st.write('<style>div[class="css-1siy2j7 e1fqkh3o3"] > div{background-color: #E6DFDF;}</style>', unsafe_allow_html=True)
+    st.write('<style>div[class="css-1siy2j7 e1fqkh3o3"] > div{background-color: #DCDCDC;}</style>', unsafe_allow_html=True)
     st.write('<style>div.row-widget.stRadio > div{flex-direction:column;}</style>', unsafe_allow_html=True)
     st.title("Contents")
     contents_radio = st.radio("",
@@ -1402,11 +1402,12 @@ with st.sidebar:
 
 
 if contents_radio == 'Compare Datasets':
+    # sidebar update
     with st.sidebar:
         add_spacelines(4)
 
 else:
-    # sidebar
+    # sidebar update
     with st.sidebar:
         dataset_name = st.selectbox(
              "Choose a dataset you would like to analyse",
