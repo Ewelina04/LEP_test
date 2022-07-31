@@ -1999,12 +1999,17 @@ elif contents_radio == 'Compare Datasets' and contents_radio3 == "Text-Level Ana
 elif contents_radio == 'Compare Datasets' and contents_radio3 == "(Anti)Heroes":
     if hansard_box:
         hansard_df = hansard_df_ethos
-    if np.sum([int(us2016_box), int(conspiracy_box), int(hansard_box)]) > 1:
+        
+    if np.sum([int(us2016_box), int(conspiracy_box), int(hansard_box)]) == 2:
         CompareDatasetsHeroes()
+    elif np.sum([int(us2016_box), int(conspiracy_box), int(hansard_box)]) == 3:
+        st.subheader("Compare Datasets on (Anti)heroes")
+        add_spacelines(5)
+        st.warning("**At the moment you can compare only 2 dataset for (Anti)Heroes.**")        
     else:
         st.subheader("Compare Datasets on (Anti)heroes")
         add_spacelines(5)
-        st.warning("**You need to select at least 2 dataset.**")
+        st.warning("**You need to select 2 dataset.**")
 
 else:
     MainPage()
