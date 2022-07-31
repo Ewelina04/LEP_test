@@ -1669,7 +1669,7 @@ def CompareDatasetsHeroes():
         title1 = "US2016 Presidential Debate Reddit"
         title2 = "Conspiracy Theories Reddit"
 
-    if conspiracy_box and hansard_box and not us2016_box:
+    elif conspiracy_box and hansard_box and not us2016_box:
         concat_cols = ['Text', 'Target', 'Ethos_Label', 'ethos_name']
 
         targets_all_conspiracy = ['the vaccinated', 'BBC', 'Reuters', 'Talkradio', 'CNN', 'they',
@@ -1690,7 +1690,7 @@ def CompareDatasetsHeroes():
         title1 = "Conspiracy Theories Reddit"
         title2 = "Hansard"
 
-    if us2016_box and hansard_box and not conspiracy_box:
+    elif us2016_box and hansard_box and not conspiracy_box:
         concat_cols = ['Text', 'Target', 'Ethos_Label', 'ethos_name']
 
         targets_all_us2016 = ['Webb', 'Sanders', 'Clinton', 'Trump', 'Paul',
@@ -1769,18 +1769,18 @@ def CompareDatasetsHeroes():
     dd2 = pd.concat([dd2, dd_conspiracy2], axis = 0)
 
     color = sns.color_palette("Reds", 5)[-1:]  + sns.color_palette("Greens", 5)[::-1][:1] +  sns.color_palette("Blues", 5)[::-1][:1]
-    sns.set(font_scale=4.5)
+    sns.set(font_scale=4)
     f = sns.catplot(kind = 'bar', data = dd2, y = 'Target', x = 'score',
                    hue = 'Ethos_Label', palette = color, dodge = False, sharey=False,
-                   aspect = 1, height = 43, alpha = 1, legend = False, col = "Dataset")
+                   aspect = 1, height = 40, alpha = 1, legend = False, col = "Dataset")
     #plt.xticks(np.arange(-100, 101, 20), fontsize=16)
     #plt.yticks(fontsize=16)
     #plt.xlabel("\nscore", fontsize=18)
     plt.ylabel("")
     f.set_axis_labels('\nscore', '')
-    plt.legend(fontsize=46, title = '', bbox_to_anchor=(0.1, 1.12), ncol = 3)
+    plt.legend(fontsize=45, title = '', bbox_to_anchor=(0.1, 1.12), ncol = 3)
     plt.tight_layout()
-    sns.set(font_scale=4.5)
+    sns.set(font_scale=4)
     plt.show()
     st.pyplot(f)
 
