@@ -679,7 +679,7 @@ def MainPage():
         add_spacelines(2)
         st.write(" **************************** ")
         st.write(" Project developed by:")
-        col11, col22, col33, col111, col222, col333, col7 = st.columns([4, 4, 3])
+        col11, col22, col33 = st.columns([4, 4, 3])
         with col11:
             st.write("**Katarzyna Budzynska**")
         with col22:
