@@ -673,8 +673,8 @@ def MainPage():
 
 
     with st.container():
-        image = Image.open(r'C:\Users\User\Downloads\multi_app\tne_logo.png')
-        imageuam = Image.open(r'C:\Users\User\Downloads\multi_app\uam_logo_blue.jfif') # uam_logo_black.jpg
+        image = Image.open(r'tne_logo.png')
+        imageuam = Image.open(r'uam_logo_blue.jfif') # uam_logo_black.jpg
 
         add_spacelines(2)
         st.write(" **************************** ")
