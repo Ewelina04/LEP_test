@@ -1776,7 +1776,7 @@ def CompareDatasetsHeroes():
 
     color = sns.color_palette("Reds", 5)[-1:]  + sns.color_palette("Greens", 5)[::-1][:1] +  sns.color_palette("Blues", 5)[::-1][:1]
 
-        if us2016_box and conspiracy_box and not hansard_box:
+    if us2016_box and conspiracy_box and not hansard_box:
         #dd2 = pd.concat([dd2, dd_conspiracy2], axis = 0)
         sns.set(font_scale=2)
         f1 = sns.catplot(kind = 'bar', data = dd2, y = 'Target', x = 'score',
@@ -1798,7 +1798,7 @@ def CompareDatasetsHeroes():
                        aspect = 1, height = 22, alpha = 1, legend = False, col = "Dataset")
         plt.ylabel("")
         #f2.set_axis_labels('\nscore', '')
-        plt.legend(fontsize=35, title = '', bbox_to_anchor=(0.65, 1.12), ncol = 3)
+        plt.legend(fontsize=35, title = '', bbox_to_anchor=(0.8, 1.12), ncol = 3)
         plt.tight_layout()
         sns.set(font_scale=2)
         plt.show()
