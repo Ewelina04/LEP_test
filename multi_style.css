@@ -19,10 +19,9 @@ div[class="st-b7"] {
   font-weight: bold;
 }
 
-/*div[class="st-ae st-af st-ag st-ah st-ai st-aj st-ak st-al st-am st-ba st-ao st-ap st-aq st-ar st-as st-at st-au st-av st-aw st-ax st-ay st-az st-b9 st-b1 st-b2 st-b3 st-b4 st-b5 st-b6"] {
-  opacity: 1.1;
-  background-color: white;
-}*/
+p {
+  text-align: justify;
+}
 
 div[class="st-ae st-af st-ag st-ah st-ai st-aj st-ak st-al st-am st-ch st-ao st-ap st-aq st-ar st-as st-at st-au st-av st-aw st-ax st-ay st-az st-b9 st-b1 st-b2 st-b3 st-b4 st-b5 st-b6"] {
   opacity: 1.1;
@@ -51,6 +50,11 @@ div[data-baseweb="select"] > div {
 div[class="streamlit-expanderHeader st-ae st-et st-ag st-ah st-ai st-aj st-bp st-d4 st-cc st-eu st-ev st-ew st-ex st-as st-at st-cq st-ci st-ey st-cg st-ez st-b4 st-by st-ch st-f0 st-b5 st-f1 st-ce st-cf st-cd"] {
   font-weight: 600;
   color: black;
+}
+
+div.row-widget.stRadio > div {
+    flex-direction: column;
+    align-items: stretch;
 }
 
 div.row-widget.stRadio > div[role="radiogroup"] > label[data-baseweb="radio"] > div:first-child {
