@@ -1776,22 +1776,38 @@ def CompareDatasetsHeroes():
 
     color = sns.color_palette("Reds", 5)[-1:]  + sns.color_palette("Greens", 5)[::-1][:1] +  sns.color_palette("Blues", 5)[::-1][:1]
 
-    if us2016_box and conspiracy_box and not hansard_box:
-        dd2 = pd.concat([dd2, dd_conspiracy2], axis = 0)
-        sns.set(font_scale=2.3)
+        if us2016_box and conspiracy_box and not hansard_box:
+        #dd2 = pd.concat([dd2, dd_conspiracy2], axis = 0)
+        sns.set(font_scale=2)
         f1 = sns.catplot(kind = 'bar', data = dd2, y = 'Target', x = 'score',
                        hue = 'Ethos_Label', palette = color, dodge = False, sharey=False,
-                       aspect = 1, height = 27, alpha = 1, legend = False, col = "Dataset")
+                       aspect = 1, height = 23, alpha = 1, legend = False, col = "Dataset")
         #plt.xticks(np.arange(-100, 101, 20), fontsize=16)
         #plt.yticks(fontsize=16)
         #plt.xlabel("\nscore", fontsize=18)
         plt.ylabel("")
-        #f1.set_axis_labels('\nscore', '')
-        plt.legend(fontsize=35, title = '', bbox_to_anchor=(0.2, 1.12), ncol = 3)
+        f1.set_axis_labels('\nscore', '')
+        plt.legend(fontsize=35, title = '', bbox_to_anchor=(0.8, 1.12), ncol = 3)
         plt.tight_layout()
-        sns.set(font_scale=2.3)
+        sns.set(font_scale=2)
         plt.show()
-        st.pyplot(f1)
+
+        f2 = sns.catplot(kind = 'bar', data = dd_conspiracy2,
+                       y = 'Target', x = 'score',
+                       hue = 'Ethos_Label', palette = color, dodge = False, sharey=False,
+                       aspect = 1, height = 22, alpha = 1, legend = False, col = "Dataset")
+        plt.ylabel("")
+        #f2.set_axis_labels('\nscore', '')
+        plt.legend(fontsize=35, title = '', bbox_to_anchor=(0.65, 1.12), ncol = 3)
+        plt.tight_layout()
+        sns.set(font_scale=2)
+        plt.show()
+        
+        plot1, plot2 = st.columns(2)
+        with plot1:
+            st.pyplot(f1)
+        with plot2:
+            st.pyplot(f2) 
 
     else:
         sns.set(font_scale=2)
