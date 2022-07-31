@@ -594,9 +594,9 @@ def add_spacelines(number=2):
 @st.cache
 def load_dataset(dataset):
     if dataset == "US2016 Presidential Debate Reddit":
-        data = pd.read_excel(r"C:\Users\User\Downloads\app\app_US2016.xlsx", index_col = 0)
+        data = pd.read_excel(r"app_US2016.xlsx", index_col = 0)
     elif dataset ==  "Conspiracy Theories Reddit":
-        data = pd.read_excel(r"C:\Users\User\Downloads\app\app_conspiracy.xlsx", index_col = 0)
+        data = pd.read_excel(r"app_conspiracy.xlsx", index_col = 0)
     return data
 
 
@@ -1788,7 +1788,7 @@ def CompareDatasetsHeroes():
 
 
 
-style_css(r"C:\Users\User\Downloads\app\multi_style.css")
+style_css(r"multi_style.css")
 
 
 # sidebar
@@ -1810,16 +1810,16 @@ if contents_radio == 'Compare Datasets':
         add_spacelines(2)
 
         if us2016_box:
-            us2016_df = pd.read_excel(r"C:\Users\User\Downloads\app\app_US2016.xlsx", index_col = 0)
+            us2016_df = pd.read_excel(r"app_US2016.xlsx", index_col = 0)
             us2016_df['Dataset'] = "US2016 Presidential Debate Reddit"
 
         if conspiracy_box:
-            conspiracy_df = pd.read_excel(r"C:\Users\User\Downloads\app\app_conspiracy.xlsx", index_col = 0)
+            conspiracy_df = pd.read_excel(r"app_conspiracy.xlsx", index_col = 0)
             conspiracy_df['Dataset'] = "Conspiracy Theories Reddit"
 
         if hansard_box:
-            hansard_df_ethos = pd.read_excel(r"C:\Users\User\Downloads\app\app_hansard_ethos.xlsx", index_col = 0)
-            hansard_df_logos = pd.read_excel(r"C:\Users\User\Downloads\app\app_hansard_logos.xlsx", index_col = 0)
+            hansard_df_ethos = pd.read_excel(r"app_hansard_ethos.xlsx", index_col = 0)
+            hansard_df_logos = pd.read_excel(r"app_hansard_logos.xlsx", index_col = 0)
             hansard_df_ethos['Dataset'] = "Hansard"
             hansard_df_logos['Dataset'] = "Hansard"
 
@@ -1845,14 +1845,7 @@ elif contents_radio == "Single Dataset Analytics":
         datasets_singles_conspiracy = st.checkbox("Conspiracy Theories Reddit")
         #datasets_singles_hansard = st.checkbox("Hansard")
         add_spacelines(1)
-    #    if datasets_singles_conspiracy and datasets_singles_us2016:
-    #        st.info(f'Selected datasets: **US2016 Presidential Debate Reddit** and **Conspiracy Theories Reddit**')
-    #    elif datasets_singles_us2016:
-    #        st.info(f'Selected dataset: **US2016 Presidential Debate Reddit**')
-    #    elif datasets_singles_conspiracy:
-    #        st.info(f'Selected dataset: **Conspiracy Theories Reddit**')
 
-        #st.info(f'Selected datasets: **{datasets_singles_names}**')
         add_spacelines(1)
         if datasets_singles_conspiracy and datasets_singles_us2016:
             concat_cols = ['map_ID', 'Text', 'Source', 'Target', 'No_Ethos', 'Contains_ethos',
