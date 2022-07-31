@@ -944,11 +944,13 @@ def TargetHeroScores():
         col1, col2 = st.columns([3, 2])
         with col1:
             st.subheader("Hero score")
-            col1.metric(str(selected_target), str(df_target_sup)+ str('%'), str(round((df_target_sup - df_target_all_sup),  1))+ str(' p.p.')) # round(((df_target_sup / df_target_all_sup) * 100) - 100, 1)
-
+            col1.metric(str(selected_target), str(df_target_sup)+ str('%'), str(round((df_target_sup - df_target_all_sup),  1))+ str(' p.p.'),
+            help = f"Percentage of social media posts that support {selected_target}.") # round(((df_target_sup / df_target_all_sup) * 100) - 100, 1)
+            
         with col2:
             st.subheader("Anti-hero score")
-            col2.metric(str(selected_target), str(df_target_att)+ str('%'), str(round((df_target_att - df_target_all_att),  1))+ str(' p.p.'), delta_color="inverse") # ((df_target_att / df_target_all_att) * 100) - 100, 1)
+            col2.metric(str(selected_target), str(df_target_att)+ str('%'), str(round((df_target_att - df_target_all_att),  1))+ str(' p.p.'), delta_color="inverse",
+            help = f"Percentage of social media posts that attack {selected_target}.") # ((df_target_att / df_target_all_att) * 100) - 100, 1)
 
         st.write('<style>div.row-widget.stRadio > div{flex-direction:row;font-size=18px;}</style>', unsafe_allow_html=True)
         radio_senti_target = st.radio("", ("percentage", "count"))
@@ -998,7 +1000,8 @@ def TargetHeroScores():
         st.write("""
         Hero and Anti-hero scores are calculated based on the ethos annotation. \n
 
-        Values indicate what proportion of users support and attack, respectively, a given entity. Higher Hero score means that users support the target entity more often, and when Anti-hero score is higher, users tend to attack rather than support the entity.
+        Values indicate the proportion of social media posts that support and attack, respectively, a given entity. 
+        Higher Hero score means that users support the target entity more often, and when Anti-hero score is higher, users tend to attack rather than support the entity.
         """)
     st.write('<style>div.row-widget.stRadio > div{flex-direction:column;font-size=18px;}</style>', unsafe_allow_html=True)
 
@@ -1765,24 +1768,108 @@ def CompareDatasetsHeroes():
 
     dd2['Dataset'] = str(title1)
     dd_conspiracy2['Dataset'] = str(title2)
-
-    dd2 = pd.concat([dd2, dd_conspiracy2], axis = 0)
+    
+    targets_hansard = dd_conspiracy2.Target.unique()
+    num_targets_hansard = len(targets_hansard)
+    targets_hansard_1 = targets_hansard[:int(num_targets_hansard/2)]
+    targets_hansard_2 = targets_hansard[int(num_targets_hansard/2):]
 
     color = sns.color_palette("Reds", 5)[-1:]  + sns.color_palette("Greens", 5)[::-1][:1] +  sns.color_palette("Blues", 5)[::-1][:1]
-    sns.set(font_scale=4)
-    f = sns.catplot(kind = 'bar', data = dd2, y = 'Target', x = 'score',
-                   hue = 'Ethos_Label', palette = color, dodge = False, sharey=False,
-                   aspect = 1, height = 40, alpha = 1, legend = False, col = "Dataset")
-    #plt.xticks(np.arange(-100, 101, 20), fontsize=16)
-    #plt.yticks(fontsize=16)
-    #plt.xlabel("\nscore", fontsize=18)
-    plt.ylabel("")
-    f.set_axis_labels('\nscore', '')
-    plt.legend(fontsize=45, title = '', bbox_to_anchor=(0.1, 1.12), ncol = 3)
-    plt.tight_layout()
-    sns.set(font_scale=4)
-    plt.show()
-    st.pyplot(f)
+
+    if us2016_box and conspiracy_box and not hansard_box:
+        dd2 = pd.concat([dd2, dd_conspiracy2], axis = 0)
+        sns.set(font_scale=2.3)
+        f1 = sns.catplot(kind = 'bar', data = dd2, y = 'Target', x = 'score',
+                       hue = 'Ethos_Label', palette = color, dodge = False, sharey=False,
+                       aspect = 1, height = 27, alpha = 1, legend = False, col = "Dataset")
+        #plt.xticks(np.arange(-100, 101, 20), fontsize=16)
+        #plt.yticks(fontsize=16)
+        #plt.xlabel("\nscore", fontsize=18)
+        plt.ylabel("")
+        #f1.set_axis_labels('\nscore', '')
+        plt.legend(fontsize=35, title = '', bbox_to_anchor=(0.2, 1.12), ncol = 3)
+        plt.tight_layout()
+        sns.set(font_scale=2.3)
+        plt.show()
+        st.pyplot(f1)
+
+    else:
+        sns.set(font_scale=2)
+        f1 = sns.catplot(kind = 'bar', data = dd2, y = 'Target', x = 'score',
+                       hue = 'Ethos_Label', palette = color, dodge = False, sharey=False,
+                       aspect = 1, height = 23, alpha = 1, legend = False, col = "Dataset")
+        #plt.xticks(np.arange(-100, 101, 20), fontsize=16)
+        #plt.yticks(fontsize=16)
+        #plt.xlabel("\nscore", fontsize=18)
+        plt.ylabel("")
+        f1.set_axis_labels('\nscore', '')
+        plt.legend(fontsize=35, title = '', bbox_to_anchor=(0.8, 1.12), ncol = 3)
+        plt.tight_layout()
+        sns.set(font_scale=2)
+        plt.show()
+
+        f2 = sns.catplot(kind = 'bar', data = dd_conspiracy2[dd_conspiracy2.Target.isin(targets_hansard_1)],
+                       y = 'Target', x = 'score',
+                       hue = 'Ethos_Label', palette = color, dodge = False, sharey=False,
+                       aspect = 1, height = 22, alpha = 1, legend = False, col = "Dataset")
+        plt.ylabel("")
+        #f2.set_axis_labels('\nscore', '')
+        plt.legend(fontsize=35, title = '', bbox_to_anchor=(0.65, 1.12), ncol = 3)
+        plt.tight_layout()
+        sns.set(font_scale=2)
+        plt.show()
+
+        f3 = sns.catplot(kind = 'bar', data = dd_conspiracy2[dd_conspiracy2.Target.isin(targets_hansard_2)],
+                       y = 'Target', x = 'score',
+                       hue = 'Ethos_Label', palette = color, dodge = False, sharey=False,
+                       aspect = 1, height = 22, alpha = 1, legend = False, col = "Dataset")
+        plt.ylabel("")
+        #f3.set_axis_labels('\nscore', '')
+        plt.legend(fontsize=35, title = '', bbox_to_anchor=(0.8, 1.12), ncol = 3)
+        plt.tight_layout()
+        sns.set(font_scale=2)
+        plt.show()
+        #st.pyplot(f1)
+        #st.pyplot(f2)
+        #st.pyplot(f3)
+
+        plot1, plot2 = st.columns(2)
+        with plot1:
+            st.pyplot(f1)
+        with plot2:
+            st.pyplot(f2)
+        plot0, plot3 = st.columns(2)
+        with plot0:
+            st.write("")
+        with plot3:
+            st.pyplot(f3)
+
+    add_spacelines(2)
+
+    st.write(f"##### **{title1}**")
+    col1, col00, col2 = st.columns([3, 1, 3])
+    with col1:
+        col1.metric('Heroes', str(round((len(dd2[dd2['Ethos_Label'] == 'hero']) / len(dd2)) * 100, 1)) + "% ",
+        help = f"Percentage of enities that are viewed as heroes in ${title1}$ corpus.")
+    with col00:
+        st.write("")
+    with col2:
+        col2.metric('Anti-heroes', str(round((len(dd2[dd2['Ethos_Label'] == 'anti-hero']) / len(dd2)) * 100, 1)) + "% ",
+        delta_color="inverse", help = f"Percentage of enities that are viewed as anti-heroes in ${title1}$ corpus.")
+
+    add_spacelines(2)
+
+    st.write(f"##### **{title2}**")
+    col101, col0, col202 = st.columns([3, 1, 3])
+    with col101:
+        col101.metric('Heroes', str(round((len(dd_conspiracy2[dd_conspiracy2['Ethos_Label'] == 'hero']) / len(dd_conspiracy2)) * 100, 1)) + "% ",
+        help = f"Percentage of enities that are viewed as heroes in ${title2}$ corpus.")
+    with col0:
+        st.write("")
+    with col202:
+        col202.metric('Anti-heroes', str(round((len(dd_conspiracy2[dd_conspiracy2['Ethos_Label'] == 'anti-hero']) / len(dd_conspiracy2)) * 100, 1)) + "% ",
+        delta_color="inverse", help = f"Percentage of enities that are viewed as anti-heroes in ${title2}$ corpus.")
+
 
 
 
